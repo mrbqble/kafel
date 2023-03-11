@@ -10,7 +10,7 @@ export const Main = () => {
     const { items, setItems } = useContext(DefaultContext);
     const [search, setSearch] = useState("");
     
-    const arraySF = items?.filter(item => item.name.split(' ').filter(word => word.substring(0, search.length).toLowerCase() === search.toLowerCase()).length > 0);
+    const arraySF = items?.filter(item => item?.name?.split(' ').filter(word => word.substring(0, search.length).toLowerCase() === search.toLowerCase()).length > 0);
 
     useEffect(() => {
         getItems().then(res => setItems(res));
@@ -50,11 +50,11 @@ export const Main = () => {
                         <table className="stone-gap__table">
                             <tr className="stone-gap__row">
                                 <td className="stone-gap__d">Размеры:</td>
-                                <td className="stone-gap__d">{item.size}</td>
+                                <td className="stone-gap__d">{item.size} cm</td>
                             </tr>
                             <tr className="stone-gap__row">
                                 <td className="stone-gap__d">Толщина:</td>
-                                <td className="stone-gap__d">{item.thick}</td>
+                                <td className="stone-gap__d">{item.thick} cm</td>
                             </tr>
                             <tr className="stone-gap__row">
                                 <td className="stone-gap__d">Производитель:</td>

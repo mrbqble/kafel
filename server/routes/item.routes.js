@@ -50,7 +50,12 @@ router.post('/editItem',
         try {
             const { _id } = req.body.item
             const user = await Item.findOne({_id});
-            user = req.body.item;
+            user.name = req.body.item.name;
+            user.size = req.body.item.size;
+            user.thick = req.body.item.thick;
+            user.cost = req.body.item.cost;
+            user.producer = req.body.item.producer;
+            user.img = req.body.item.img;
             await user.save();
             return res.json({message: 'Item information was changed'});
         } catch (error) {

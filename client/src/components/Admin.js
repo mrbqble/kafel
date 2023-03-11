@@ -9,7 +9,7 @@ const Admin = () => {
     const { items, setItems, setItem, setEdit } = useContext(DefaultContext);
     const [search, setSearch] = useState("");
     
-    const arraySF = items?.filter(item => item.name.split(' ').filter(word => word.substring(0, search.length).toLowerCase() === search.toLowerCase()).length > 0);
+    const arraySF = items?.filter(item => item?.name?.split(' ').filter(word => word.substring(0, search.length).toLowerCase() === search.toLowerCase()).length > 0);
 
     useEffect(() => {
         getItems().then(res => setItems(res));
@@ -37,6 +37,7 @@ const Admin = () => {
             <input className="stone__form-input" type="text" value={search} onChange={event => setSearch(event.target.value)} placeholder="Поиск"/>
             <table className='admin__table'>
                 <tr className='admin__table-row'>
+                    <th>№</th>
                     <th>Название</th>
                     <th>Размеры</th>
                     <th>Толщина</th>
@@ -48,9 +49,10 @@ const Admin = () => {
                 </tr>
                 {arraySF?.map((item, index) =>
                     <tr className="stone-gap__row admin__table-row" key={index}>
+                        <td className="stone-gap__d">{index + 1}</td>
                         <td className="stone-gap__d">{item.name}</td>
-                        <td className="stone-gap__d">{item.size}</td>
-                        <td className="stone-gap__d">{item.thick}</td>
+                        <td className="stone-gap__d">{item.size} cm</td>
+                        <td className="stone-gap__d">{item.thick} cm</td>
                         <td className="stone-gap__d">{item.producer}</td>
                         <td className="stone-gap__d">{item.cost}</td>
                         <td className="stone-gap__d">
