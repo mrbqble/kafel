@@ -1,0 +1,5 @@
+{
+    "serverPort": 1500,
+    "secretKey": "store-backend",
+    "dbUrl": "mongodb+srv://bibol:bibol2148@store.vzl7q6w.mongodb.net/?retryWrites=true&w=majority"
+}
