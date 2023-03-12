@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const link = 'http://localhost:1500/item';
+const link1 = 'http://localhost:1500/item';
+const link = 'https://kafel-server.onrender.com/item'
 
 export const getItems = async () => {
     const response = await axios.post(`${link}/allItems`);
