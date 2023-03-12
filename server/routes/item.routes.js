@@ -48,7 +48,7 @@ router.post('/deleteItem',
 router.post('/editItem',
     async (req, res) => {
         try {
-            const { _id } = req.body.item
+            const { _id } = req.body.item;
             const user = await Item.findOne({_id});
             user.name = req.body.item.name;
             user.size = req.body.item.size;
@@ -56,6 +56,7 @@ router.post('/editItem',
             user.cost = req.body.item.cost;
             user.producer = req.body.item.producer;
             user.img = req.body.item.img;
+            console.log(user);
             await user.save();
             return res.json({message: 'Item information was changed'});
         } catch (error) {

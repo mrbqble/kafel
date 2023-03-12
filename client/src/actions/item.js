@@ -14,12 +14,15 @@ export const getItem = async (index) => {
 
 export const addItem = async (item) => {
     const response = await axios.post(`${link}/addItem`, {item});
+    return response;
 }
 
 export const editItem = async (item) => {
     const response = await axios.post(`${link}/editItem`, {item});
+    return response;
 }
 
 export const deleteItem = async (_id) => {
     const response = await axios.post(`${link}/deleteItem`, {_id});
+    return response;
 }

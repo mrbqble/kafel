@@ -1,22 +1,27 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { addItem, editItem } from '../actions/item';
+import { addItem, editItem, getItems } from '../actions/item';
 import { DefaultContext } from '../Context';
 
 export const AddItemForm = () => {
 
+    
     const navigate = useNavigate();
     const [confirmed, setConfirmed] = useState(false);
-    const { item, setItem, edit, setEdit } = useContext(DefaultContext);
+    const { item, setItem, edit, setEdit, setItems } = useContext(DefaultContext);
+    
+    window.onpopstate = () => setEdit(false);
 
     const handleAdd = () => {
         if (confirmed) {
             if (edit) {
-                editItem(item);
-                setEdit(!edit);
+                editItem(item).then(r => {
+                    getItems().then(res => setItems(res));
+                    setEdit(false);
+                });
                 alert("Item was changed");
             } else {
-                addItem(item);
+                addItem(item).then(r => getItems().then(res => setItems(res)));
                 alert("Item was added");
             }
             navigate('/admin');
@@ -46,7 +51,7 @@ export const AddItemForm = () => {
             </fieldset>
             <fieldset className="stone__option">
                 <legend className="stone__form-title">Толщина</legend>
-                <input value={item.thick} className="stone__form-input" type="text" placeholder="1 см" onChange={event => setItem({...item, thick: event.target.value})}/>
+                <input value={item.thick} className="stone__form-input" type="number" placeholder="1 см" onChange={event => setItem({...item, thick: event.target.value})}/>
             </fieldset>
             <fieldset className="stone__option">
                 <legend className="stone__form-title">Производитель</legend>
@@ -59,7 +64,7 @@ export const AddItemForm = () => {
             </fieldset>
             <fieldset className="stone__option">
                 <legend className="stone__form-title">Цена</legend>
-                <input value={item.cost} className="stone__form-input" type="text" placeholder="14990 тг." onChange={event => setItem({...item, cost: event.target.value})}/>
+                <input value={item.cost} className="stone__form-input" type="number" placeholder="14990 тг." onChange={event => setItem({...item, cost: event.target.value})}/>
             </fieldset>
             <fieldset className="stone__option stone__checkbox-option">
                 <legend className="stone__form-title">Подтверждение:</legend>

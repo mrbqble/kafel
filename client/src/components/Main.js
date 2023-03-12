@@ -45,8 +45,8 @@ export const Main = () => {
             </section>
             <section className="stone__gaps">
                 {arraySF?.map((item, index) =>
-                    <div className="stone-gap" key={index} onClick={() => navigate(`/items/${index}`)}>
-                        <h2 className="stone-gap__title">{item.name}</h2>
+                    <div className="stone-gap" key={index}>
+                        <h2 className="stone-gap__title" >{item.name}</h2>
                         <table className="stone-gap__table">
                             <tr className="stone-gap__row">
                                 <td className="stone-gap__d">Размеры:</td>
@@ -61,7 +61,7 @@ export const Main = () => {
                                 <td className="stone-gap__d">{item.producer}</td>
                             </tr>
                         </table>
-                        <img className="stone-gap__image" src={item.img}/>
+                        <img className="stone-gap__image" src={item.img} onClick={() => navigate(`/items/${items.findIndex(card => card._id === item._id)}`)}/>
                         <b className="stone-gap__price">Цена: {item.cost} KZT</b>
                         <a className="stone-gap__buy" href='#'><span className="buy">Заказать</span></a>
                     </div>
