@@ -13,6 +13,8 @@ import Item from './components/Item';
 function App() {
 
 	const [items, setItems] = useState();
+	const [img, setImg] = useState();
+	const [view, setView] = useState(false);
 	const [item, setItem] = useState({
         name: "",
         size: "",
@@ -25,7 +27,12 @@ function App() {
 
 	return (
 		<div>
-			<DefaultContext.Provider value={{edit, setEdit, items, setItems, item, setItem}}>
+			{view &&
+				<div className='view'>
+					<img className='view-img' src={item.img} onClick={() => setView(false)}/>
+				</div>
+			}
+			<DefaultContext.Provider value={{edit, setEdit, items, setItems, item, setItem, setView}}>
 				<BrowserRouter>
 					<Routes>
 						<Route path="/" element={<Main/>}/>

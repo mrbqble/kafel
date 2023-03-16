@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DefaultContext } from '../Context';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getItem } from '../actions/item';
@@ -8,7 +8,7 @@ const Item = () => {
 
     const navigate = useNavigate()
     const { index } = useParams();
-    const { items, item, setItem } = useContext(DefaultContext);
+    const { items, item, setItem, setView } = useContext(DefaultContext);
 
     useEffect(() => {
         if(!items) {
@@ -41,7 +41,7 @@ const Item = () => {
                     <b className="stone-gap__price">Цена: {item.cost} KZT</b>
                     <a className="stone-gap__buy" href='#'><span className="buy">Заказать</span></a>
                 </div>
-                <img className="stone-gap__image" src={item.img}/>
+                <img className="stone-gap__image" src={item.img} onClick={() => setView(true)}/>
             </div>
         </section>
     )
