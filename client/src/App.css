@@ -122,8 +122,8 @@ body {
     object-fit: cover;
     margin-bottom: 12px;
     margin-top: 33px;
-    width: 260px;
-    height: 315px;
+    width: 300px;
+    height: auto;
     left: 63px;
 }
 
