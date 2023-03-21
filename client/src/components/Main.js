@@ -3,6 +3,10 @@ import logo from '../img/logo.png';
 import { getItems } from '../actions/item';
 import { DefaultContext } from '../Context';
 import { useNavigate } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from "swiper";
+import 'swiper/css';
 
 export const Main = () => {
 
@@ -10,7 +14,7 @@ export const Main = () => {
     const { items, setItems } = useContext(DefaultContext);
     const [search, setSearch] = useState("");
     
-    const arraySF = items?.filter(item => item?.name?.split(' ').filter(word => word.substring(0, search.length).toLowerCase() === search.toLowerCase()).length > 0);
+    const arraySF = items?.filter(item => item?.name?.split(' ').filter(word => word.substring(0, search.length).toLowerCase() === search.toLowerCase()).length > 0).sort((a, b) => b.ordered - a.ordered);
 
     useEffect(() => {
         getItems().then(res => setItems(res));
@@ -40,11 +44,49 @@ export const Main = () => {
                     <path d="M34.003 40.5355C35.9557 42.4882 39.1215 42.4882 41.0741 40.5355L72.8939 8.71573C74.8465 6.76311 74.8465 3.59728 72.8939 1.64466C70.9413 -0.307961 67.7755 -0.307961 65.8228 1.64466L37.5386 29.9289L9.2543 1.64466C7.30168 -0.307961 4.13586 -0.307961 2.18324 1.64466C0.230614 3.59728 0.230614 6.76311 2.18324 8.71573L34.003 40.5355ZM32.5386 36V37H42.5386V36H32.5386Z" fill="white"/>
                 </svg>            
             </header>
+            <Swiper
+                slidesPerView={4}
+                centeredSlides={true}
+                loop
+                style={{
+                    margin: "0px"
+                }}
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                }}
+                modules={[Autoplay]}
+            >
+                {arraySF?.slice(0, 10).map((item, index) =>
+                    <SwiperSlide>
+                        <div className="stone-gap" key={index}>
+                            <h2 className="stone-gap__title" >{item.name}</h2>
+                            <table className="stone-gap__table">
+                                <tr className="stone-gap__row">
+                                    <td className="stone-gap__d">Размеры:</td>
+                                    <td className="stone-gap__d">{item.size} cm</td>
+                                </tr>
+                                <tr className="stone-gap__row">
+                                    <td className="stone-gap__d">Толщина:</td>
+                                    <td className="stone-gap__d">{item.thick} cm</td>
+                                </tr>
+                                <tr className="stone-gap__row">
+                                    <td className="stone-gap__d">Производитель:</td>
+                                    <td className="stone-gap__d">{item.producer}</td>
+                                </tr>
+                            </table>
+                            <img className="stone-gap__image" src={item.img} onClick={() => navigate(`/items/${items.findIndex(card => card._id === item._id)}`)}/>
+                            <b className="stone-gap__price">Цена: {item.cost} KZT</b>
+                            <a className="stone-gap__buy" href='#'><span className="buy">Заказать</span></a>
+                        </div>
+                    </SwiperSlide>
+                )}
+            </Swiper>
             <section className='stone__form'>
                 <input className="stone__form-input" type="text" value={search} onChange={event => setSearch(event.target.value)} placeholder="Поиск"/>
             </section>
             <section className="stone__gaps">
-                {arraySF?.map((item, index) =>
+                {arraySF ? arraySF?.map((item, index) =>
                     <div className="stone-gap" key={index}>
                         <h2 className="stone-gap__title" >{item.name}</h2>
                         <table className="stone-gap__table">
@@ -65,7 +107,7 @@ export const Main = () => {
                         <b className="stone-gap__price">Цена: {item.cost} KZT</b>
                         <a className="stone-gap__buy" href='#'><span className="buy">Заказать</span></a>
                     </div>
-                )}
+                ) : <ClipLoader color="gray" size={50} speedMultiplier={0.5} cssOverride={{margin: 20}}/>}
             </section>
         </div>
     )

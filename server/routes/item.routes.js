@@ -6,6 +6,7 @@ router.post("/addItem",
     async (req, res) => {
         try {
             const item = new Item(req.body.item);
+            item.ordered = 0;
             await item.save();
             return res.json({message: "Item was created"});
         } catch (error) {
@@ -49,19 +50,31 @@ router.post('/editItem',
     async (req, res) => {
         try {
             const { _id } = req.body.item;
-            const user = await Item.findOne({_id});
-            user.name = req.body.item.name;
-            user.size = req.body.item.size;
-            user.thick = req.body.item.thick;
-            user.cost = req.body.item.cost;
-            user.producer = req.body.item.producer;
-            user.img = req.body.item.img;
-            console.log(user);
-            await user.save();
+            const item = await Item.findOne({_id});
+            item.name = req.body.item.name;
+            item.size = req.body.item.size;
+            item.thick = req.body.item.thick;
+            item.cost = req.body.item.cost;
+            item.producer = req.body.item.producer;
+            item.img = req.body.item.img;
+            await item.save();
             return res.json({message: 'Item information was changed'});
         } catch (error) {
             res.send({message: 'Server error'});
         };
 });
+
+router.post('/orderItem',
+    async (req, res) => {
+        try {
+            const {_id} = req.body.item;
+            const item = await Item.findOne({_id});
+            item.ordered += 1;
+            await item.save();
+        } catch (error) {
+            res.send({message: "Server error"})
+        }
+    }
+)
 
 module.exports = router;

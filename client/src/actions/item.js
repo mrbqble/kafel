@@ -27,3 +27,8 @@ export const deleteItem = async (_id) => {
     const response = await axios.post(`${link}/deleteItem`, {_id});
     return response;
 }
+
+export const orderItem = async (_id) => {
+    const response = await axios.post(`${link}/orderItem`, {_id});
+    return response;
+}

@@ -6,7 +6,8 @@ const Item = new Schema({
     thick: {type: Number},
     cost: {type: Number},
     producer: {type: String},
-    img: {type: String}
+    img: {type: String},
+    ordered: {type: Number}
 });
 
 module.exports = model('Item', Item);
