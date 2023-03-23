@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const link = 'http://localhost:1500/item';
+const link = 'https://elite-stroi.kz/api/item';
 
 export const getItems = async () => {
     const response = await axios.post(`${link}/allItems`);

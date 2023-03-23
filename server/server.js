@@ -10,8 +10,8 @@ const PORT = process.env.PORT || config.get('serverPort');
 
 app.use(cors());
 app.use(express.json({ limit: "40mb", extended: true }));
-app.use('/admin', adminRouter);
-app.use('/item', itemRouter);
+app.use('/api/admin', adminRouter);
+app.use('/api/item', itemRouter);
 
 const start = async () => {
     try {
