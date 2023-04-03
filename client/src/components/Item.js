@@ -38,7 +38,6 @@ const Item = () => {
                             <td className="stone-gap__d">{item.producer}</td>
                         </tr>
                     </table>
-                    <b className="stone-gap__price">Цена: {item.cost} KZT</b>
                     <a className="stone-gap__buy" href='https://api.whatsapp.com/send?phone=77715631208'><span className="buy">Заказать</span></a>
                 </div>
                 <img className="stone-gap__image" src={item.img} onClick={() => setView(true)}/>

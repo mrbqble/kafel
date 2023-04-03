@@ -1,3 +1,10 @@
+@media only screen and (max-width: 592px) {
+    .item__card {
+        flex-direction: column-reverse;
+        margin-bottom: 20px;
+    }
+}
+
 body {
     width: 100%;
     margin: 0;
@@ -36,13 +43,6 @@ body {
     margin: 0px;
 }
 
-@media only screen and (max-width: 592px) {
-    .item__card {
-        flex-direction: column-reverse;
-        margin-bottom: 20px;
-    }
-}
-
 .stone__item {
     display: flex;
     justify-content: center;
@@ -63,7 +63,7 @@ body {
 
 .stone__title {
     font-weight: 700;
-    font-size: 60px;
+    font-size: calc(20px + 40 * (100vw / 1280));
     background: linear-gradient(94.76deg, #B97E16 7.52%, #F3DD3C 29.02%, #904815 50.06%, #F4CB40 72.9%, #883B13 93.5%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

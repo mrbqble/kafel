@@ -87,7 +87,6 @@ export const Main = () => {
                                     </tr>
                                 </table>
                                 <img className="stone-gap__image" src={item.img} onClick={() => navigate(`/items/${items.findIndex(card => card._id === item._id)}`)}/>
-                                <b className="stone-gap__price">Цена: {item.cost} KZT</b>
                                 <a className="stone-gap__buy" href='https://api.whatsapp.com/send?phone=77715631208'><span className="buy">Заказать</span></a>
                             </div>
                         </SwiperSlide>
@@ -115,7 +114,6 @@ export const Main = () => {
                             </tr>
                         </table>
                         <img className="stone-gap__image" src={item.img} onClick={() => navigate(`/items/${items.findIndex(card => card._id === item._id)}`)}/>
-                        <b className="stone-gap__price">Цена: {item.cost} KZT</b>
                         <a className="stone-gap__buy" href='https://api.whatsapp.com/send?phone=77715631208'><span className="buy">Заказать</span></a>
                     </div>
                 ) : <ClipLoader color="gray" size={50} speedMultiplier={0.5} cssOverride={{margin: 20}}/>}

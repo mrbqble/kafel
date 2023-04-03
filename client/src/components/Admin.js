@@ -42,7 +42,6 @@ const Admin = () => {
                     <th>Размеры</th>
                     <th>Толщина</th>
                     <th>Производитель</th>
-                    <th>Цена</th>
                     <th>Фото</th>
                     <th></th>
                     <th></th>
@@ -54,7 +53,6 @@ const Admin = () => {
                         <td className="stone-gap__d">{item.size} cm</td>
                         <td className="stone-gap__d">{item.thick} cm</td>
                         <td className="stone-gap__d">{item.producer}</td>
-                        <td className="stone-gap__d">{item.cost}</td>
                         <td className="stone-gap__d">
                             <img className="stone-gap__image timg" src={item.img}/>
                         </td>

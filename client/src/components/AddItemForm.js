@@ -62,10 +62,6 @@ export const AddItemForm = () => {
                 <input className="stone__form-input" type="file" onChange={(event) => getBase64(event.target.files[0])}/>
                 <img src={item.img} className="stone__gap-image add"/>
             </fieldset>
-            <fieldset className="stone__option">
-                <legend className="stone__form-title">Цена</legend>
-                <input value={item.cost} className="stone__form-input" type="number" placeholder="14990 тг." onChange={event => setItem({...item, cost: event.target.value})}/>
-            </fieldset>
             <fieldset className="stone__option stone__checkbox-option">
                 <legend className="stone__form-title">Подтверждение:</legend>
                 <input value={confirmed} className="stone__checkbox" type="checkbox" onChange={() => setConfirmed(!confirmed)}/>
